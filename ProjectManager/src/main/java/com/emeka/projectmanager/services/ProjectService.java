@@ -25,4 +25,15 @@ public class ProjectService {
 
     }
 
+    /**
+     *We are returning a single project by the project identifier as the value is unique in the DB
+     */
+    public Project findProjectById(String projectId){
+        Project project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
+        if(project == null){
+            throw new ProjectException("Project ID: "+projectId+" doesn't exist");
+        }
+        return project;
+    }
+
 }
